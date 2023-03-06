@@ -1,6 +1,28 @@
 {
-  "dependencies": {
-    "inquirer": "^8.2.4",
+  "name": "team_profile_generator",
+  "version": "64.37.1",
+  "description": "application to create team profile generator ",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/etapm/Team-Profile-Generator.git"
+  },
+  "author": "Edgar Tapia Mendoza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/etapm/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com//etapm/Team-Profile-Generator#readme",
+  "devDependencies": {
     "jest": "^29.4.3"
+  },
+  "dependencies": {
+    "inquirer": "^8.2.4"
   }
 }

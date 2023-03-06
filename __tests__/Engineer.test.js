@@ -1,3 +1,4 @@
+// Import the Engineer constructor
 const Engineer = require("../lib/Engineer");
 
 test("creates an Engineer object with a GitHub username property that is a string", () => {
