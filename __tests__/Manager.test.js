@@ -1,5 +1,5 @@
 // Importing Manager constructor from lib folder
-const Manager = require("../lib/Manager");
+const Manager = require("../lib/manager");
 
 // Testing if Manager object is created
 test("creates a manager object", () => {

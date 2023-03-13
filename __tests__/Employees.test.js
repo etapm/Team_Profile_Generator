@@ -1,4 +1,4 @@
-const Employee = require("../lib/Employee");
+const Employee = require("../lib/employee");
 
 test("Employee constructor creates an object with name, ID, and email properties", () => {
   const employee = new Employee("Omar", 37, "omarsemail@gmail.com");

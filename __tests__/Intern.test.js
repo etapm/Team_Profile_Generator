@@ -1,5 +1,5 @@
 // Importing Intern constructor from lib folder
-const Intern = require("../lib/Intern");
+const Intern = require("../lib/intern");
 
 // Testing if Intern object is created
 test("creates an Intern object", () => {
