@@ -1,12 +1,23 @@
+a {
+  color: #354259;
+}
 body {
   font-family: Arial, sans-serif;
-  background-color: #f2f2f2;
+  background-color: #354259;
   color: #333;
 }
 
 h1 {
   text-align: center;
-  color: #008080;
+  color: rgb(72, 71, 71);
+  padding-top: 80px;
+  padding-bottom: 30px;
+  background-color: #cdc2ae;
+  margin: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 ul {
@@ -17,4 +28,25 @@ ul {
 
 li {
   margin-bottom: 10px;
+}
+
+.card {
+  margin-right: 20px;
+  margin-bottom: 20px;
+  border: 0.5px solid #ece5c7;
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-area {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }

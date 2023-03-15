@@ -1,157 +1,178 @@
-// link to page creation
-const generateHTML = require("./src/generateHTML.js");
-
-// team profiles
+// Required modules and classes
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
-
-// node modules
 const fs = require("fs");
-const readline = require("readline");
+const inquirer = require("inquirer");
+const path = require("path");
 
-// team array
+// Variables and constants
+const OUTPUT_DIR = path.resolve(__dirname, "dist");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
+const generateHTML = require("./src/generateHTML");
+
 const teamArray = [];
 
-// start of manager prompts
-const addManager = () => {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  rl.question("Who is the manager of this team?", (name) => {
-    if (!name) {
-      console.log("Please enter the manager's name!");
-      addManager();
-      return;
-    }
-
-    rl.question("Please enter the manager's ID.", (id) => {
-      if (isNaN(id)) {
-        console.log("Please enter the manager's ID!");
-        addManager();
-        return;
-      }
-
-      rl.question("Please enter the manager's email.", (email) => {
-        const valid = /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email);
-        if (!valid) {
-          console.log("Please enter a valid email!");
+// Prompt for adding a new employee
+const startApp = () => {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "What type of employee would you like to add to your team?",
+        name: "userInput",
+        choices: [
+          "Manager",
+          "Engineer",
+          "Intern",
+          "No more team members are needed.",
+        ],
+      },
+    ])
+    .then(function (input) {
+      switch (input.userInput) {
+        case "Manager":
           addManager();
-          return;
-        }
-
-        rl.question(
-          "Please enter the manager's office number.",
-          (officeNumber) => {
-            if (isNaN(officeNumber)) {
-              console.log("Please enter a valid office number!");
-              addManager();
-              return;
-            }
-
-            const manager = new Manager(name, id, email, officeNumber);
-            teamArray.push(manager);
-            console.log(manager);
-            rl.close();
-          }
-        );
-      });
-    });
-  });
-};
-
-const addEmployee = () => {
-  console.log(
-    "================= Adding employees to the team ================="
-  );
-
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
-  rl.question("Please choose your employee's role", (role) => {
-    if (!["Engineer", "Intern"].includes(role)) {
-      console.log("Please choose a valid role!");
-      addEmployee();
-      return;
-    }
-
-    rl.question("What's the name of the employee?", (name) => {
-      if (!name) {
-        console.log("Please enter an employee's name!");
-        addEmployee();
-        return;
+          break;
+        case "Engineer":
+          addEngineer();
+          break;
+        case "Intern":
+          addIntern();
+          break;
+        case "No more team members are needed.":
+          generateTeam();
+          break;
       }
-
-      rl.question("Please enter the employee's ID.", (id) => {
-        if (isNaN(id)) {
-          console.log("Please enter the employee's ID!");
-          addEmployee();
-          return;
-        }
-
-        rl.question("Please enter the employee's email.", (email) => {
-          const valid = /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(email);
-          if (!valid) {
-            console.log("Please enter a valid email!");
-            addEmployee();
-            return;
-          }
-
-          if (role === "Engineer") {
-            rl.question(
-              "Please enter the employee's github username.",
-              (github) => {
-                if (!github) {
-                  console.log("Please enter the employee's github username!");
-                  addEmployee();
-                  return;
-                }
-
-                const employee = new Engineer(name, id, email, github);
-                teamArray.push(employee);
-                console.log(employee);
-
-                rl.question(
-                  "Would you like to add more team members?",
-                  (confirmAddEmployee) => {
-                    if (confirmAddEmployee.toLowerCase() === "yes") {
-                      addEmployee();
-                    } else {
-                      rl.close();
-                      console.log(teamArray);
-
-                      //generate HTML
-                      const html = generateHTML(teamArray);
-
-                      // create HTML file
-                      fs.writeFile("./dist/team.html", html, (err) => {
-                        if (err) {
-                          console.log(err);
-                          return;
-                        }
-                        console.log(
-                          "File created! Check out team.html in the dist directory to see it."
-                        );
-                      });
-
-                      // initialize app
-                      const init = () => {
-                        addManager();
-                      };
-
-                      init();
-                    }
-                  }
-                );
-              }
-            );
-          }
-        });
-      });
     });
-  });
 };
+
+// Prompt for manager information
+const addManager = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the manager's name?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is the manager's ID?",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "What is the manager's email?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is the manager's office number?",
+        name: "officeNumber",
+      },
+    ])
+    .then(function (answers) {
+      const manager = new Manager(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.officeNumber
+      );
+      teamArray.push(manager);
+      console.log(manager);
+      startApp();
+    });
+};
+
+// Prompt for intern information
+const addIntern = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the intern's name?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is the intern's ID?",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "What is the intern's email?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is the intern's school?",
+        name: "school",
+      },
+    ])
+    .then(function (answers) {
+      const intern = new Intern(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.school
+      );
+      teamArray.push(intern);
+      console.log(intern);
+      startApp();
+    });
+};
+
+// Prompt for engineer information
+const addEngineer = () => {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is the engineer's name?",
+        name: "name",
+      },
+      {
+        type: "input",
+        message: "What is the engineer's ID?",
+        name: "id",
+      },
+      {
+        type: "input",
+        message: "What is the engineer's email?",
+        name: "email",
+      },
+      {
+        type: "input",
+        message: "What is the engineer's GitHub username?",
+        name: "github",
+      },
+    ])
+    .then(function (answers) {
+      const engineer = new Engineer(
+        answers.name,
+        answers.id,
+        answers.email,
+        answers.github
+      );
+      teamArray.push(engineer);
+      console.log(engineer);
+      startApp();
+    });
+};
+
+// Generate HTML file with team information
+const generateTeam = () => {
+  // Check if output directory exists, create it if it doesn't
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR);
+  }
+  // Write team array to HTML file using generateHTML function
+  fs.writeFileSync(outputPath, generateHTML(teamArray), "utf-8");
+  console.log(`Team profile page has been generated at ${outputPath}`);
+};
+
+module.exports = generateHTML;
+
+// Call startApp function to begin prompting user for input
+startApp();
