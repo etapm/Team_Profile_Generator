@@ -13,12 +13,11 @@ const generateEngineer = (engineer) => {
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item" id="engineer-id">ID: ${engineer.getId()}</li>
-      <li class="list-group-item" id="engineer-email">
-        <a href="mailto:${engineer.getEmail()}">Email: ${engineer.getEmail()}</a>
+      <li class="list-group-item" id="engineer-email">Email: 
+        <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a>
       </li>
-      <li class="list-group-item" id="engineer-github">
-        <a href="https://github.com/${engineer.getGithub()}" target="_blank">
-          Github: ${engineer.getGithub()}
+      <li class="list-group-item" id="engineer-github">Github: 
+        <a href="https://github.com/${engineer.getGithub()}" target="_blank"> ${engineer.getGithub()}
         </a>
       </li>
     </ul>
@@ -41,8 +40,8 @@ const generateIntern = (intern) => {
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item" id="intern-id">ID: ${intern.getId()}</li>
-      <li class="list-group-item" id="intern-email">
-        <a href="mailto:${intern.getEmail()}">Email: ${intern.getEmail()}</a>
+      <li class="list-group-item" id="intern-email">Email: 
+        <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a>
       </li>
       <li class="list-group-item" id="intern-school">School: ${intern.getSchool()}</li>
     </ul>
@@ -64,8 +63,8 @@ const generateManager = (manager) => {
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item" id="manager-id">ID: ${manager.getId()}</li>
-      <li class="list-group-item" id="manager-email">
-        <a href="mailto:${manager.getEmail()}">Email: ${manager.getEmail()}</a>
+      <li class="list-group-item" id="manager-email">Email: 
+        <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a>
       </li>
       <li class="list-group-item" id="manager-officeNumber">Office number: ${manager.getOfficeNumber()}</li>
     </ul>
