@@ -1,48 +1,55 @@
 # Team Profile Generator
 
+This project uses the following technologies:
+
+- CSS
+- Bootstrap
+- JavaScript
+- Node.js
+- Inquirer
+- Jest
+
 ## Description
 
-I made a tool called a README generator using Node.js and Inquirer. This helped me practice coding and create something useful for others. The generator makes it easy to create a clear and informative README file for a project. It asks questions using Inquirer and uses the answers to generate a README. It covers things like what the project does, how to install it, how to use it, and how to contribute. By using Node.js and Inquirer, I learned how to make command-line apps. I also learned how to use Markdown to make the README look nice.
+This is a Node.js program that makes a webpage for an entire team of developers. It shows each person's summary and makes it easy for the user to get in touch with them through their name, ID, and email. The program has three categories for employees: manager, engineer, and intern, and asks different questions depending on the category.
 
 ## Table of Contents
 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Credits](#credits)
-- [License](#license)
+- [Tests](#tests)
 
 ## Installation
 
-Review the code on the GitHub repository by visiting the [GitHub Repository](https://github.com/etapm/readme-generator). Be sure to also check out the [Walkthrough Video](https://drive.google.com/file/d/1klgeEh6djU85q6Ag_gpEU2CvFWff_E1Z/view) to see the README generator in action.
+To run this project, you need to have Node.js installed on your machine. After [cloning the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository), run the following command `"npm install"` or `"npm i"` to install the dependencies.
+
+`1. git clone git@github.com:etapm/Team_Profile_Generator.git`
+
+`2. "npm install" or "npm i"`
+
+Review the code on the GitHub repository by visiting the [GitHub Repository](https://github.com/etapm/Team_Profile_Generator). Be sure to also check out the [Walkthrough Video](https://drive.google.com/file/d/1qUtSrE2RrPr-huVbY_xdUNAorQ28UVC3/view) to see the README generator in action.
 
 ## Usage
 
-The README generator built using Node.js and Inquirer is a useful tool for automating the process of creating README files for your projects. With this generator, you can answer a series of prompts to provide information about your project, such as the title, description, installation instructions, usage examples, and more. Once you have answered all the prompts, the generator will generate a high-quality README file for your project, which you can customize and edit as needed. This tool can save you time and effort, as you no longer need to create README files manually. Additionally, it can help ensure consistency and professionalism across all your projects.
+After you install everything, open the terminal and type `"node index.js"` or `"node start"`. Then answer the questions about your employees. When you're done, select 'No more team members are needed' and your team will be ready to view in the team.html file.
 
 1. Through your command line, head towards the root directory of your project and run the following command:
    node index.js
 
-![Inputting node.js in rootdirectory of command line](./Develop/Images/Screenshot1.png)
+   ![testing results and node start](./Images/4.png)
 
 2. Answer the prompts to provide information about your project.
 
-![Weather Dashboard Home Page](./Develop/Images/Screenshot2.png)
+   ![Node.js user querstions](./Images/2.png)
 
-3. Once prompts are answered, a README file will be generated for your project.
+3. Once prompts are answered, a team.html file will be generated for your project.
 
-![Weather Dashboard Home Page](./Develop/Images/Screenshot3.png)
+   ![html location in directrory](./Images/7.png)
 
-4. You will see the README file in the root directory of your project.
+4. Open the team.html file in your browser to view your team.
 
-![Weather Dashboard Home Page](./Develop/Images/Screenshot4.png)
-
-5. The readme file will contain the information you provided in the prompts.
-
-![Weather Dashboard Home Page](./Develop/Images/Screenshot5.png)
-
-6. You can customize and edit the README file as needed.
-
-![Weather Dashboard Home Page](./Develop/Images/Screenshot6.png)
+   ![HTML webpage displaying team memebers](./Images/6.png)
 
 ## Credits
 
@@ -66,4 +73,4 @@ N/A
 
 ## Tests
 
-N/A
+This project uses Jest for testing, execute the code line `"npm test"` or `"npm run test"` in the terminal, which will display four test pages and confirm that all 13 tests have successfully passed.
